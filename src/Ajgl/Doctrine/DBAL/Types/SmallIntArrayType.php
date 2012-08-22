@@ -1,16 +1,11 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class SmallIntArrayType extends IntegerArrayType
+class SmallIntArrayType extends ArrayTypeAbstract
 {
     const SMALLINTARRAY = 'smallint[]';
 
-    protected static $name = self::SMALLINTARRAY;
+    protected $name = self::SMALLINTARRAY;
 
-    protected $sqlDeclaration = 'SMALLINT';
-
-    protected static $typeMapping = array(
-        '_smallint',
-        '_int2'
-    );
+    protected $innerTypeName = 'smallint';
 }

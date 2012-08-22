@@ -3,8 +3,6 @@
 namespace Ajgl\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
-use Doctrine\Tests\DBAL\Mocks\MockPlatform;
-use Doctrine\DBAL\Connection;
 
 /**
  * Test class for IntegerArrayType.
@@ -13,11 +11,6 @@ use Doctrine\DBAL\Connection;
 class IntegerArrayTypeTest
     extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var MockPlatform
-     */
-    protected $platform;
-
     /**
      * @var IntegerArrayType
      */
@@ -29,42 +22,12 @@ class IntegerArrayTypeTest
      */
     protected function setUp()
     {
-        if (!Type::hasType('int[]')) {
-            Type::addType('int[]', 'Ajgl\Doctrine\DBAL\Types\IntegerArrayType');
+         if (!Type::hasType('integer[]')) {
+            Type::addType('integer[]', 'Ajgl\Doctrine\DBAL\Types\IntegerArrayType');
         } else {
-            Type::overrideType('int[]', 'Ajgl\Doctrine\DBAL\Types\IntegerArrayType');
+            Type::overrideType('integer[]', 'Ajgl\Doctrine\DBAL\Types\IntegerArrayType');
         }
-        $this->platform = new MockPlatform();
-        $this->object = Type::getType('int[]');
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\IntegerArrayType::getSqlDeclaration
-     */
-    public function testGetSqlDeclaration()
-    {
-        $this->assertEquals('INTEGER[]', $this->object->getSqlDeclaration(array(), $this->platform));
-        $this->assertEquals('INTEGER[5]', $this->object->getSqlDeclaration(array('length' => 5), $this->platform));
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\IntegerArrayType::convertToPHPValue
-     */
-    public function testConvertToPHPValue()
-    {
-        $expected = array(10000, 10000, 10000, 10000);
-        $actual = $this->object->convertToPHPValue('{10000, 10000, 10000,10000}', $this->platform);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\IntegerArrayType::convertToDatabaseValue
-     */
-    public function testConvertToDatabaseValue()
-    {
-        $expected = '{10000,10000,10000,10000}';
-        $actual = $this->object->convertToDatabaseValue(array(10000, 10000, 10000, 10000), $this->platform);
-        $this->assertSame($expected, $actual);
+        $this->object = Type::getType('integer[]');
     }
 
     /**
@@ -74,4 +37,13 @@ class IntegerArrayTypeTest
     {
         $this->assertEquals(IntegerArrayType::INTEGERARRAY, $this->object->getName());
     }
+
+    /**
+     * @covers Ajgl\Doctrine\DBAL\Types\IntegerArrayType::getInnerType
+     */
+    public function testGetInnerType()
+    {
+        $this->assertInstanceOf('Doctrine\DBAL\Types\IntegerType', $this->object->getInnerType());
+    }
+
 }

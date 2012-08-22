@@ -3,7 +3,6 @@
 namespace Ajgl\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
-use Doctrine\Tests\DBAL\Mocks\MockPlatform;
 
 /**
  * Test class for BigIntArrayType.
@@ -13,19 +12,9 @@ class BigIntArrayTypeTest
     extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var MockPlatform
-     */
-    protected $platform;
-
-    /**
      * @var BigIntArrayType
      */
     protected $object;
-
-    /**
-     * @var Connection
-     */
-    protected $connection;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -33,43 +22,12 @@ class BigIntArrayTypeTest
      */
     protected function setUp()
     {
-        if (!Type::hasType('bigint[]')) {
+         if (!Type::hasType('bigint[]')) {
             Type::addType('bigint[]', 'Ajgl\Doctrine\DBAL\Types\BigIntArrayType');
         } else {
             Type::overrideType('bigint[]', 'Ajgl\Doctrine\DBAL\Types\BigIntArrayType');
         }
-        $this->platform = new MockPlatform();
         $this->object = Type::getType('bigint[]');
-
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\BigIntArrayType::getSqlDeclaration
-     */
-    public function testGetSqlDeclaration()
-    {
-        $this->assertEquals('BIGINT[]', $this->object->getSqlDeclaration(array(), $this->platform));
-        $this->assertEquals('BIGINT[5]', $this->object->getSqlDeclaration(array('length' => 5), $this->platform));
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\BigIntArrayType::convertToPHPValue
-     */
-    public function testConvertToPHPValue()
-    {
-        $expected = array(10000, 10000, 10000, 10000);
-        $actual = $this->object->convertToPHPValue('{10000, 10000, 10000,10000}', $this->platform);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @covers Ajgl\Doctrine\DBAL\Types\BigIntArrayType::convertToDatabaseValue
-     */
-    public function testConvertToDatabaseValue()
-    {
-        $expected = '{10000,10000,10000,10000}';
-        $actual = $this->object->convertToDatabaseValue(array(10000, 10000, 10000, 10000), $this->platform);
-        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -78,6 +36,14 @@ class BigIntArrayTypeTest
     public function testGetName()
     {
         $this->assertEquals(BigIntArrayType::BIGINTARRAY, $this->object->getName());
+    }
+
+    /**
+     * @covers Ajgl\Doctrine\DBAL\Types\BigIntArrayType::getInnerType
+     */
+    public function testGetInnerType()
+    {
+        $this->assertInstanceOf('Doctrine\DBAL\Types\BigIntType', $this->object->getInnerType());
     }
 
 }
