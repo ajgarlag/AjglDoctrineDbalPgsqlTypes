@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Custom PostgreSQL types",
     "keywords": ["dbal", "database", "posgresql", "psql"],
-    "homepage": "https://github.com/ajgarlag/doctrine-dbal-pgsql-types",
+    "homepage": "https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes",
     "license": "MIT",
     "authors": [
         {"name": "Antonio J. García Lagar", "email": "aj@garcialagar.es"}
