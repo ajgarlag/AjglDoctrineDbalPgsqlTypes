@@ -70,9 +70,11 @@ abstract class ArrayTypeAbstract extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        $value = self::parsePgToArray($value);
-        array_walk_recursive($value, array($this, 'convertToPhpCallback'), $platform);
-
+        if (null !== $value) {
+            $value = self::parsePgToArray($value);
+            array_walk_recursive($value, array($this, 'convertToPhpCallback'), $platform);
+        }
+        
         return $value;
     }
 

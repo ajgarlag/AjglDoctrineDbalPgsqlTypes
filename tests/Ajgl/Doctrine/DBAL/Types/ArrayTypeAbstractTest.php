@@ -101,6 +101,15 @@ class ArrayTypeAbstractTest
         $this->assertEquals($expected, $actual);
     }
 
+
+    public function testConvertToPhpNullValues()
+    {
+        $value = null;
+        $actual = $this->object->convertToPhpValue($value, $this->platform);
+        $this->assertNull($actual);
+
+    }
+
     /**
      * @covers Ajgl\Doctrine\DBAL\Types\ArrayTypeAbstract::getInnerType
      */
