@@ -16,6 +16,19 @@ $connection->getDatabasePlatform()->registerDoctrineTypeMapping('_int4', 'intege
 ```
 
 
+### Usage with Symfony Standard Edition
+If you want to use this with a Symfony Standard Edition application, you can [register the
+new types](http://symfony.com/doc/current/cookbook/doctrine/dbal.html#registering-custom-mapping-types) in the `config.yml` file.
+```yml
+doctrine:
+    dbal:
+        types:
+            integer[]: Ajgl\Doctrine\DBAL\Types\IntegerArrayType
+        mapping_types:
+            _int4: integer[]
+```
+
+
 License
 -------
 
