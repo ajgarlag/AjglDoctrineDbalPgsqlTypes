@@ -6,7 +6,12 @@
     "homepage": "https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes",
     "license": "MIT",
     "authors": [
-        {"name": "Antonio J. García Lagar", "email": "aj@garcialagar.es"}
+      {
+        "name": "Antonio J. García Lagar",
+        "email": "aj@garcialagar.es",
+        "homepage": "http://aj.garcialagar.es",
+        "role": "developer"
+      }
     ],
     "require": {
         "php": ">=5.3.2",
