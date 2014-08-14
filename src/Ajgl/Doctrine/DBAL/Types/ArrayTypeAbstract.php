@@ -74,12 +74,13 @@ abstract class ArrayTypeAbstract extends Type
             $value = self::parsePgToArray($value);
             array_walk_recursive($value, array($this, 'convertToPhpCallback'), $platform);
         }
-        
+
         return $value;
     }
 
     /**
-     * @see http://www.php.net/manual/es/ref.pgsql.php#89841
+     * @see https://web.archive.org/web/20120721205048/http://www.php.net/manual/es/ref.pgsql.php#89841
+     * @author cc+php@c2se.com
      * @param  string  $input
      * @param  array   $output
      * @param  boolean $limit
