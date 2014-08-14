@@ -93,17 +93,20 @@ abstract class ArrayTypeAbstract extends Type
             $limit = strlen($input) - 1;
             $output = array();
         }
-        if ('{}' != $input)
+        if ('{}' != $input) {
             do {
                 if ('{' != $input{$offset}) {
                     preg_match("/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/", $input, $match, 0, $offset);
                     $offset += strlen($match[0]);
                     $output[] = ( '"' != $match[1]{0} ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
-                    if ('},' == $match[3])
+                    if ('},' == $match[3]) {
                         return $offset;
-                } else
+                    }
+                } else {
                     $offset = self::parsePgToArray($input, $output[], $limit, $offset + 1);
+                }
             } while ($limit > $offset);
+        }
 
         return $output;
     }
