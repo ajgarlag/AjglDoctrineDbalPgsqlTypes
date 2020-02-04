@@ -79,6 +79,14 @@ abstract class ArrayTypeAbstract extends Type
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
+
+    /**
      * @see https://web.archive.org/web/20120721205048/http://www.php.net/manual/es/ref.pgsql.php#89841
      * @author cc+php@c2se.com
      * @param  string  $input
