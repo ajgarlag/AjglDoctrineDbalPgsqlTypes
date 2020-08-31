@@ -103,10 +103,10 @@ abstract class ArrayTypeAbstract extends Type
         }
         if ('{}' != $input) {
             do {
-                if ('{' != $input{$offset}) {
+                if ('{' != $input[$offset]) {
                     preg_match("/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/", $input, $match, 0, $offset);
                     $offset += strlen($match[0]);
-                    $output[] = ( '"' != $match[1]{0} ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
+                    $output[] = ( '"' != $match[1][0] ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
                     if ('},' == $match[3]) {
                         return $offset;
                     }
