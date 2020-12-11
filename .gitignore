@@ -1,3 +1,4 @@
+/*.cache
+/composer.lock
+/phpunit.xml
 /vendor/
-composer.lock
-phpunit.xml
