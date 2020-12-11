@@ -20,7 +20,10 @@
         "phpunit/phpunit": "^8.4.1"
     },
     "autoload": {
-        "psr-0": { "Ajgl\\Doctrine\\DBAL\\Types": "src/" }
+        "psr-4": { "Ajgl\\Doctrine\\DBAL\\Types\\": "src" }
+    },
+    "autoload-dev": {
+	"psr-4": { "Ajgl\\Doctrine\\DBAL\\Types\\Tests\\": "tests" }
     },
     "minimum-stability": "stable",
     "extra": {
