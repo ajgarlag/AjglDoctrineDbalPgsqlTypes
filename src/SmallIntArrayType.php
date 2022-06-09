@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class SmallIntArrayType extends ArrayTypeAbstract
+final class SmallIntArrayType extends ArrayTypeAbstract
 {
     const SMALLINTARRAY = 'smallint[]';
 

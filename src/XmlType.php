@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\TextType;
 use SimpleXMLElement;
 
-class XmlType extends TextType
+final class XmlType extends TextType
 {
     const XML = 'xml';
 

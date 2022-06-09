@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class BigIntArrayType extends ArrayTypeAbstract
+final class BigIntArrayType extends ArrayTypeAbstract
 {
     const BIGINTARRAY = 'bigint[]';
 

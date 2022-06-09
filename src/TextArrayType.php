@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class TextArrayType extends ArrayTypeAbstract
+final class TextArrayType extends ArrayTypeAbstract
 {
     const TEXTARRAY = 'text[]';
 

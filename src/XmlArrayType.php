@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class XmlArrayType extends ArrayTypeAbstract
+final class XmlArrayType extends ArrayTypeAbstract
 {
     const XMLARRAY = 'xml[]';
 

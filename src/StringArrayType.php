@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class StringArrayType extends ArrayTypeAbstract
+final class StringArrayType extends ArrayTypeAbstract
 {
     const STRINGARRAY = 'string[]';
 

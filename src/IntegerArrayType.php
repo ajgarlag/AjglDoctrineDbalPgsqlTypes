@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class IntegerArrayType extends ArrayTypeAbstract
+final class IntegerArrayType extends ArrayTypeAbstract
 {
     const INTEGERARRAY = 'integer[]';
 

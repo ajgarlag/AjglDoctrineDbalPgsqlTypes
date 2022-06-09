@@ -1,7 +1,7 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class BooleanArrayType extends ArrayTypeAbstract
+final class BooleanArrayType extends ArrayTypeAbstract
 {
     const BOOLEANARRAY = 'boolean[]';
 
