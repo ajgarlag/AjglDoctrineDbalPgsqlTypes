@@ -7,37 +7,18 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 abstract class ArrayTypeAbstract extends Type
 {
-    /**
-     * @var string
-     * @override
-     */
-    protected $name;
+    protected string $name;
 
-    /**
-     * @var string
-     * @override
-     */
-    protected $innerTypeName;
+    protected string $innerTypeName;
 
-    /**
-     * @var Type
-     */
-    protected $innerType;
+    protected Type $innerType;
 
-    /**
-     * @inheritdoc
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param  array            $fieldDeclaration
-     * @param  AbstractPlatform $platform
-     * @return string
-     */
-    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $innerDeclaration = $this->getInnerType()->getSQLDeclaration($fieldDeclaration, $platform);
         if (substr($innerDeclaration, -2) == '()') {
@@ -47,28 +28,19 @@ abstract class ArrayTypeAbstract extends Type
         return $innerDeclaration . '[]';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function canRequireSQLConversion()
+    public function canRequireSQLConversion(): bool
     {
         return true;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         array_walk_recursive($value, array($this, 'convertToDatabaseCallback'), $platform);
 
         return self::parseArrayToPg($value);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?array
     {
         if (null !== $value) {
             $value = self::parsePgToArray($value);
@@ -78,10 +50,7 @@ abstract class ArrayTypeAbstract extends Type
         return $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
@@ -92,7 +61,7 @@ abstract class ArrayTypeAbstract extends Type
      */
     protected static function parsePgToArray(string $input, &$output=null, int $limit=null, int $offset=1)
     {
-        if (false === $limit) {
+        if (null === $limit) {
             $limit = strlen($input) - 1;
             $output = array();
         }
@@ -114,7 +83,7 @@ abstract class ArrayTypeAbstract extends Type
         return $output;
     }
 
-    public static function parseArrayToPg($array)
+    public static function parseArrayToPg(array $array): string
     {
         foreach ($array as $key => $value) {
             if (is_array($value)) {
@@ -125,12 +94,9 @@ abstract class ArrayTypeAbstract extends Type
         return '{' . implode(',', $array) . '}';
     }
 
-    /**
-     * @return Type
-     */
-    public function getInnerType()
+    public function getInnerType(): Type
     {
-        if (null === $this->innerType) {
+        if (!isset($this->innerType)) {
             $this->innerType = Type::getType($this->innerTypeName);
         }
 
@@ -138,21 +104,19 @@ abstract class ArrayTypeAbstract extends Type
     }
 
     /**
-     * @param scalar $v
-     * @param string $k
-     * @param mixed  $userData
+     * @param mixed $v
+     * @return mixed
      */
-    protected function convertToPhpCallback(&$v, $k, AbstractPlatform $platform)
+    protected function convertToPhpCallback(&$v,  string $k, AbstractPlatform $platform)
     {
         $v = $this->getInnerType()->convertToPHPValue($v, $platform);
     }
 
     /**
-     * @param scalar $v
-     * @param string $k
-     * @param mixed  $userData
+     * @param mixed $v
+     * @return mixed
      */
-    protected function convertToDatabaseCallback(&$v, $k, AbstractPlatform $platform)
+    protected function convertToDatabaseCallback(&$v, string $k, AbstractPlatform $platform)
     {
         $v = $this->getInnerType()->convertToDatabaseValue($v, $platform);
     }

@@ -5,7 +5,7 @@ final class BooleanArrayType extends ArrayTypeAbstract
 {
     const BOOLEANARRAY = 'boolean[]';
 
-    protected $name = self::BOOLEANARRAY;
+    protected string $name = self::BOOLEANARRAY;
 
-    protected $innerTypeName = 'boolean';
+    protected string $innerTypeName = 'boolean';
 }

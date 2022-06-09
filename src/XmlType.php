@@ -18,7 +18,7 @@ final class XmlType extends TextType
         return self::XML;
     }
 
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         switch (true) {
             case $platform instanceof PostgreSqlPlatform:
@@ -28,18 +28,15 @@ final class XmlType extends TextType
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function canRequireSQLConversion()
+    public function canRequireSQLConversion(): bool
     {
         return true;
     }
 
     /**
-     * @inheritdoc
+     * @param ?SimpleXMLElement $value
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if ($value === null) {
             return $value;
@@ -56,10 +53,7 @@ final class XmlType extends TextType
         );
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): mixed
     {
         if ($value === null || $value instanceof SimpleXMLElement) {
             return $value;
@@ -74,10 +68,7 @@ final class XmlType extends TextType
         return $xml;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }

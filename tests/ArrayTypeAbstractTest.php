@@ -44,9 +44,9 @@ final class ArrayTypeAbstractTest
     public function testGetSqlDeclaration()
     {
         $this->platform->expects($this->once())
-            ->method('getVarcharTypeDeclarationSQL')
-            ->willReturn('DUMMYVARCHAR');
-        $this->assertEquals('DUMMYVARCHAR[]', $this->object->getSqlDeclaration(array(), $this->platform));
+            ->method('getIntegerTypeDeclarationSQL')
+            ->willReturn('DUMMYINT');
+        $this->assertEquals('DUMMYINT[]', $this->object->getSqlDeclaration(array(), $this->platform));
     }
 
     /**
@@ -70,17 +70,8 @@ final class ArrayTypeAbstractTest
      */
     public function testConvertToDatabaseValue()
     {
-        $value = array(
-            array(
-                'uno',
-                'dos'
-            ),
-            array(
-                'tres',
-                'cuatro'
-            )
-        );
-        $expected = '{{uno,dos},{tres,cuatro}}';
+        $value = [[1,2],[3,4]];
+        $expected = '{{1,2},{3,4}}';
         $actual = $this->object->convertToDatabaseValue($value, $this->platform);
         $this->assertEquals($expected, $actual);
     }
@@ -90,17 +81,8 @@ final class ArrayTypeAbstractTest
      */
     public function testConvertToPhpValue()
     {
-        $value = '{{uno,dos},{tres,cuatro}}';
-        $expected = array(
-            array(
-                'uno',
-                'dos'
-            ),
-            array(
-                'tres',
-                'cuatro'
-            )
-        );
+        $value = '{{1,2},{3,4}}';;
+        $expected = [[1,2],[3,4]];
         $actual = $this->object->convertToPhpValue($value, $this->platform);
         $this->assertEquals($expected, $actual);
     }
@@ -119,21 +101,15 @@ final class ArrayTypeAbstractTest
      */
     public function testGetInnerType()
     {
-        $this->assertInstanceOf('Doctrine\DBAL\Types\StringType', $this->object->getInnerType());
+        $this->assertInstanceOf('Doctrine\DBAL\Types\IntegerType', $this->object->getInnerType());
     }
 }
 
 final class ArrayTypeAbstractConcrete
     extends ArrayTypeAbstract
 {
-    /**
-     * @var string
-     */
-    protected $name = 'foo';
+    protected string $name = 'foo';
 
-    /**
-     * @var string
-     */
-    protected $innerTypeName = 'string';
+    protected string $innerTypeName = 'integer';
 
 }
