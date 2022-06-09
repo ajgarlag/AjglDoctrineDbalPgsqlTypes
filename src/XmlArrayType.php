@@ -1,11 +1,11 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class XmlArrayType extends ArrayTypeAbstract
+final class XmlArrayType extends ArrayTypeAbstract
 {
     const XMLARRAY = 'xml[]';
 
-    protected $name = self::XMLARRAY;
+    protected string $name = self::XMLARRAY;
 
-    protected $innerTypeName = 'xml';
+    protected string $innerTypeName = 'xml';
 }

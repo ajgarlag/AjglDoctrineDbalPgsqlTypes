@@ -1,11 +1,11 @@
 <?php
 namespace Ajgl\Doctrine\DBAL\Types;
 
-class IntegerArrayType extends ArrayTypeAbstract
+final class IntegerArrayType extends ArrayTypeAbstract
 {
     const INTEGERARRAY = 'integer[]';
 
-    protected $name = self::INTEGERARRAY;
+    protected string $name = self::INTEGERARRAY;
 
-    protected $innerTypeName = 'integer';
+    protected string $innerTypeName = 'integer';
 }
