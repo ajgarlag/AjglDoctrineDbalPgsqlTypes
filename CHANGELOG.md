@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Add DBAL 4 support
+
+### Removed
+
+- Drop PHP <8.1 support
+- Drop DBAL <3 support
+
 ## [0.4.0] - 2022-06-09
 
 ### Added
