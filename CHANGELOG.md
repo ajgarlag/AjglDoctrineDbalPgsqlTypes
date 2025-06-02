@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Add PHP 8.4 support
 
+### Fixed
+
+- Fix implicitly marking parameters as nullable deprecation
+
 ## [0.4.1] - 2024-04-03
 
 ### Added

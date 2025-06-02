@@ -70,7 +70,7 @@ abstract class ArrayTypeAbstract extends Type
      * @see https://web.archive.org/web/20120721205048/http://www.php.net/manual/es/ref.pgsql.php#89841
      * @author cc+php@c2se.com
      */
-    protected static function parsePgToArray(string $input, &$output = null, int $limit = null, int $offset = 1)
+    protected static function parsePgToArray(string $input, &$output = null, ?int $limit = null, int $offset = 1)
     {
         if (null === $limit) {
             $limit = strlen($input) - 1;
