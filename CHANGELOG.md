@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.2] - 2025-06-02
+
 ### Added
 
 - Add PHP 8.4 support
@@ -55,7 +57,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.1.0 - 2014-05-06
 
-[Unreleased]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.4.1...main
+[Unreleased]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.4.2...main
+[0.4.2]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.4.1...0.4.2
 [0.4.1]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/ajgarlag/AjglDoctrineDbalPgsqlTypes/compare/0.2.1...0.3.0
